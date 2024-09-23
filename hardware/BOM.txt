@@ -1,0 +1,22 @@
+ # |  package |  parts    |
+---+----------+-----------+--------------------------------------------------
+U1 |          |XIAO RP2040|Seeed XIAO RP2040 board
+U2 |SO6       |TLP2368    |Photo coupler (open collector output)
+U3 |SOT3-5    |SN74LV1T34 |Single Power Supply BUFFER Logic Level Shifter
+R1 |1608(0603)|220Ω      |Register
+R2 |1608(0603)|220Ω      |Register
+R3 |1608(0603)|220Ω      |Register
+R4 |1608(0603)|1kΩ       |Register
+R5 |1608(0603)|1kΩ       |Register
+R6 |1608(0603)|1kΩ       |Register
+D1 |SOD123    |1N4148W    |Switching Diode
+D2 |SOD523    |BAT43XV2   |Shotkey Diode 30V200mA
+D3 |SOD523    |BAT43XV2   |Shotkey Diode 30V200mA
+D4 |SOD523    |BAT43XV2   |Shotkey Diode 30V200mA
+D5 |SOD523    |BAT43XV2   |Shotkey Diode 30V200mA
+J1 |          |MJ8435     |3.5mm Stereo mini jack
+J2 |          |MJ8435     |3.5mm Stereo mini jack
+J3 |          |MJ8435     |3.5mm Stereo mini jack
+SW1|          |3P SW      |Slide Switch 1P2T Right Angle
+SW2|SO8       |KHS42E     |DIP Switch 4P SMT
+---+----------+-----------+--------------------------------------------------
