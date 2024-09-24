@@ -243,7 +243,7 @@ void setSPW(uint8_t c) {
    *    off = high, on = low
    *
    * [MODE0] 
-   *   0  : PPQ values ​​are changed using DIP Switch. The value stored in the EEPROM is ignored.
+   *   0  : PPQ values are changed using DIP Switch. The value stored in the EEPROM is ignored.
    *    PPQ table
    *    [MODE1] [MODE2]
    *      1       1     : 1 PPQ    (3)
@@ -275,7 +275,7 @@ void __not_in_flash_func(applyModeValue)(uint32_t sw) {
     uint32_t temp_ppqn;
     switch (sw & 0x03) {
       case 0:
-        temp_ppqn = 12;
+        temp_ppqn = 24;
         break;
       case 1:
         temp_ppqn = 4;
