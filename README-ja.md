@@ -1,4 +1,4 @@
-# MIDItoSyncConverter
+# USB MIDI to Sync Converter
 USB MIDIのクロックメッセージをSYNC信号に変換します
 
 ## ビルド方法
@@ -31,6 +31,42 @@ D1ピンにランモードスイッチ機能を割り当てています。D1端�
 |----|---------|
 |L|MIDI Start/Stopメッセージに連動してSync信号を出力します|
 |H|MIDIクロックを受信している間はSync信号を出力し続けます|
+
+### DIN SYNC (試験的実装)
+DIN SYNCのStart/Stop信号をD2ピンから出力しています。  
+D2ピンはDIPスイッチの'DIN S'に割り当てられ、Sync端子のRINGに接続されています。  
+'DIN S'をOnにするとRINGから出力、OffにするとRINGはオープンになります。
+
+### TRS MIDI In/Out (TypeA)
+USB MIDIとTRS MIDIの間でMIDIメッセージを転送します。簡易的なUSB MIDIコンバーターとして使用出来ます。
+注:
+- SysExには対応していません
+- TRS MIDI INから入力したclockをSync信号に変換することはできません
+
+### 設定用スイッチ
+設定用スイッチでPPQ値やMIDIフィルターの設定ができます。  
+
+|pin|名前 |設定             |
+|---|-----|---------------------|
+|D5 |MODE0|設定種<br>L:PPQ値の変更をスイッチで行う。PPQ値はEEPROMには保存されません。<br>H:PPQ値の設定をSysExで行う。PPQ値はEEPROMに保存される。
+|D4 |MODE1|MODE0=L : PPQ値設定<br>MODE0=H : MIDIフィルター
+|D3 |MODE2|MODE0=L : PPQ値設定<br>MODE0=H : MIDIフィルター
+
+#### MODE0=0 PPQ値設定
+|MODE1 |MODE2 | PPQ値  |
+|------|------|--------|
+|H(Off)|H(Off)|1       |
+|H(Off)|L(On) |2       |
+|L(On) |H(Off)|4       |
+|L(On) |L(On) |24      |
+
+#### MODE0=1 MIDI Filter
+|MODE1 |MODE2 | フィルター設定                              |
+|------|------|---------------------------------------------|
+|H(Off)|H(Off)|全てのメッセージをUSBからTRS MIDI Outに転送  |
+|H(Off)|L(On) |Clock, Start, Stop, Continueメッセージを転送 |
+|L(On) |H(Off)|Clockのみ転送                                |
+|L(On) |L(On) |無効 (予約済み)                              |
 
 ## Sync信号のパルス幅について
 このプロジェクトではSync信号のパルス幅を5msに設定しています。  
@@ -72,4 +108,5 @@ assets/sysexにSysExファイルを格納しています。必要に応じて使
 【注意】SysExメッセージは独自のものを定義するのではなく、ユニバーサル・システム・エクスクルーシブのFile Reference Messageを流用しています。
 
 ## ライセンス
-MIDItoSyncConverter is open source and licensed under the [GPL3](/LICENSE) License.
+USB MIDI to Sync Converter is open source and licensed under the [GPL3](/LICENSE) License.
+

@@ -19,13 +19,13 @@ Build setting:
 ## Schematic
 Complete schematic created in [KiCad](./hardware/KiCad/USBMIDItoSYNC_Converter/).
 
-Minimum configuration with only sync signal output terminal
+Minimum configuration with sync signal output terminal only
 ![Fritzing](./hardware/Fritzing/USBMIDItoSyncConverter-MinimumConfiguration.png)
 
 
 ## Usage
 Connects to the sending MIDI device with a USB cable and to the receiving device with a 3.5 mm stereo cable.  
-The mode switch can be used to select the action to be taken when a MIDI START/STOP message is received.
+The run mode switch can be used to select the action to be taken when a MIDI START/STOP message is received.
 
 ### Run mode switch
 The D1 pin is assigned to mode switch. D1 is pulled up and goes High when open.
@@ -34,6 +34,43 @@ The D1 pin is assigned to mode switch. D1 is pulled up and goes High when open.
 |----|---------|
 |Low |Sends out or stops the sync signal in conjunction with MIDI Start and Stop messages.|
 |High|Free run. When MIDI Clock is received, the Sync signal is sent regardless of the playback status of the MIDI device.|
+
+### DIN SYNC (experimental)
+The DIN SYNC Start/Stop signal is output to the D2 pin.
+D2 pin is assigned to 'DIN S' on the DIP switch and is connected to the RING of the Sync terminal.
+
+
+### TRS MIDI In/Out (TypeA)
+Transfers MIDI messages between USB MIDI and TRS MIDI.  
+Note:
+- SysEx is not supported.
+- The clock input from TRS MIDI IN cannot be converted to a Sync signal.
+  
+### Setting switch
+The setting switches can be used to set PPQ values and MIDI filter settings.  
+
+|pin|name | setting             |
+|---|-----|---------------------|
+|D5 |MODE0|Type setting<br>L:PPQ values are changed using Setting switch. The value stored in the EEPROM is ignored.<br>H:PPQ values ​​are changed using SysEx messages. Settings are saved in EEPROM.
+|D4 |MODE1|MODE0=L : PPQ selecter<br>MODE0=H : MIDI FilterSelector
+|D3 |MODE2|MODE0=L : PPQ selecter<br>MODE0=H : MIDI FilterSelector
+
+#### MODE0=0 PPQ selector
+|MODE1 |MODE2 | PPQ    |
+|------|------|--------|
+|H(Off)|H(Off)|1       |
+|H(Off)|L(On) |2       |
+|L(On) |H(Off)|4       |
+|L(On) |L(On) |24      |
+
+#### MODE0=1 MIDI Filter
+|MODE1 |MODE2 | Filter                                             |
+|------|------|----------------------------------------------------|
+|H(Off)|H(Off)|All messages are forwarded from USB to TRS MIDI Out |
+|H(Off)|L(On) |Only Clock, Start, Stop, Continue are fowarded.     |
+|L(On) |H(Off)|Foward only clocks                                  |
+|L(On) |L(On) |N/A (Reserved)                                      |
+
 
 ## About the pulse width of the sync signal
 In this project, the pulse width of the sync signal is set to 5 ms.  
@@ -76,4 +113,4 @@ SysEx files are stored in assets/sysex. Use as needed.
 Note: The SysEx message does not define a dedicated one, but rather diverts the universal system-exclusive File Reference Message.
 
 ## License
-MIDItoSyncConverter is open source and licensed under the [GPL3](/LICENSE) License.
+USB MIDI to Sync Converter is open source and licensed under the [GPL3](/LICENSE) License.
