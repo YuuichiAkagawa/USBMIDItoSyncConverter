@@ -9,7 +9,7 @@ Converts USB MIDI clock messages to sync signals.
 
 ### Build
 This project uses Arduino IDE2 and requires the following libraries:
-- board: [Arduino-pico](https://github.com/earlephilhower/arduino-pico) 4.0.2
+- board: [Arduino-pico](https://github.com/earlephilhower/arduino-pico) 4.1.1
 - library: [Arduino MIDI Library](https://github.com/FortySevenEffects/arduino_midi_library) 5.0.2
 
 Build setting:

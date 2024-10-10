@@ -7,7 +7,7 @@ USB MIDIのクロックメッセージをSYNC信号に変換します
 
 ### ビルド
 このプロジェクトのビルドにはArduino IDE2および以下のライブラリが必要です。
-- board: [Arduino-pico](https://github.com/earlephilhower/arduino-pico) 4.0.2
+- board: [Arduino-pico](https://github.com/earlephilhower/arduino-pico) 4.1.1
 - library: [Arduino MIDI Library](https://github.com/FortySevenEffects/arduino_midi_library) 5.0.2
 
 ビルド設定  
