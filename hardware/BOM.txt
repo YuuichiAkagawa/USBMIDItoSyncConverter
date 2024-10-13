@@ -9,6 +9,7 @@ R3 |1608(0603)|220Ω      |Register
 R4 |1608(0603)|1kΩ       |Register
 R5 |1608(0603)|1kΩ       |Register
 R6 |1608(0603)|1kΩ       |Register
+C1 |1608(0603)|0.1uF      |Ceramic capacitor
 D1 |SOD123    |1N4148W    |Switching Diode
 D2 |SOD523    |BAT43XV2   |Shotkey Diode 30V200mA
 D3 |SOD523    |BAT43XV2   |Shotkey Diode 30V200mA
