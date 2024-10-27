@@ -243,7 +243,7 @@ void setSPW(uint8_t c) {
    *    off = high, on = low
    *
    * [MODE0] 
-   *   0  : PPQ values are changed using DIP Switch. The value stored in the EEPROM is ignored.
+   *   0  : PPQ values ​​are changed using DIP Switch. The value stored in the EEPROM is ignored.
    *    PPQ table
    *    [MODE1] [MODE2]
    *      1       1     : 1 PPQ    (3)
@@ -378,9 +378,11 @@ void __not_in_flash_func(setup)() {
 
   TinyUSB_Device_Init(0);
   TinyUSBDevice.clearConfiguration();
-  // If you have own VID and PID, you can use it.
-  //TinyUSBDevice.setID(0xvvvv, 0xpppp);
-  usb_midi.setStringDescriptor("USBMIDI2Sync converter");
+
+  // This VID and PID were assigned from pid.codes.
+  TinyUSBDevice.setID(0x1209, 0x3249);
+  TinyUSBDevice.setManufacturerDescriptor("ammlab.org");
+  TinyUSBDevice.setProductDescriptor("USBMIDI2Sync converter");
 
   // Initialize USB MIDI
   USBMIDI.begin(MIDI_CHANNEL_OMNI);
